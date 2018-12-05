@@ -1,4 +1,4 @@
-package com.ctalix.wl.springboot.webcontext;
+package com.ctalix.wl.springboot.web.context;
 
 import org.springframework.util.ClassUtils;
 
@@ -11,7 +11,7 @@ import org.springframework.util.ClassUtils;
 public enum WebApplicationType {
     /**
      * The application should not run as a web application and should not start an
-     * embedded web server.
+     * embedded webserver.
      */
     NONE,
 
@@ -38,7 +38,7 @@ public enum WebApplicationType {
     private static final String SERVLET_APPLICATION_CONTEXT_CLASS = "org.springframework.web.context.WebApplicationContext";
 
     private static final String REACTIVE_APPLICATION_CONTEXT_CLASS = "org.springframework.boot.web.reactive.context.ReactiveWebApplicationContext";
-   
+
     private static final String[] SERVLET_INDICATOR_CLASSES = { "javax.servlet.Servlet",
             "org.springframework.web.context.ConfigurableWebApplicationContext" };
 
@@ -46,7 +46,7 @@ public enum WebApplicationType {
      * 创建 context 的 类型，根据是否存在web mvc 的框架
      * @return WebApplicationType
      */
-    static WebApplicationType deduceFromClasspath() {
+    public static WebApplicationType deduceFromClasspath() {
         if (ClassUtils.isPresent(WEBFLUX_INDICATOR_CLASS, null)
                 && !ClassUtils.isPresent(WEBMVC_INDICATOR_CLASS, null)
                 && !ClassUtils.isPresent(JERSEY_INDICATOR_CLASS, null)) {

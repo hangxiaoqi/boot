@@ -13,7 +13,7 @@ public class TomcatServletwebServer {
 
        public static final String DEFAULT_PROTOCOL = "org.apache.coyote.http11.Http11NioProtocol";
 
-        public Tomcat getWebServer(String baseDir) {
+        public static Tomcat getWebServer(String baseDir) {
         Tomcat tomcat = new Tomcat();
         tomcat.setBaseDir(baseDir);
         Connector connector = new Connector(DEFAULT_PROTOCOL);
