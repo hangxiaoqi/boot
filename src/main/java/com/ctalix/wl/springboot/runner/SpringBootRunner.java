@@ -18,6 +18,11 @@ public class SpringBootRunner {
      */
     private WebApplicationType webApplicationType;
 
+    /**
+     * 在 spring boot 中 通过多个重载的 run() 进行一些初始化的工作，这里就直接在一个方法中进行创建
+     * @param arg 运行参数
+     * @return ConfigurableApplicationContext
+     */
     public ConfigurableApplicationContext run(String... arg) {
         ConfigurableApplicationContext context = null;
         context = createContext();
