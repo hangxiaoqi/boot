@@ -10,4 +10,6 @@ import org.springframework.context.ConfigurableApplicationContext;
  */
 public interface ConfigurableWebSeverApplicationContext extends ConfigurableApplicationContext, WebServerApplicaitonContext {
 
+
+
 }

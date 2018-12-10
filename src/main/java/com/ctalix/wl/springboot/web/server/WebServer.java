@@ -1,6 +1,7 @@
 package com.ctalix.wl.springboot.web.server;
 
 import com.ctalix.wl.springboot.web.server.exception.WebServerException;
+import org.apache.catalina.LifecycleException;
 
 /**
  * Todo
@@ -11,7 +12,7 @@ import com.ctalix.wl.springboot.web.server.exception.WebServerException;
 public interface WebServer {
 
 
-    void start() throws WebServerException;
+    void start() throws WebServerException, LifecycleException, InterruptedException;
 
     void stop() throws WebServerException;
 

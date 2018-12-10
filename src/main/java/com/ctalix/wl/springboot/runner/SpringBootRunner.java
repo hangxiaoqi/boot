@@ -2,6 +2,9 @@ package com.ctalix.wl.springboot.runner;
 
 import com.ctalix.wl.servlet.context.AnnotationConfigServletWebServerApplicaitonContext;
 import com.ctalix.wl.springboot.web.context.WebApplicationType;
+import com.ctalix.wl.tomcat.TomcatServletwebServer;
+import org.apache.catalina.LifecycleException;
+import org.apache.catalina.startup.Tomcat;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -13,6 +16,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class SpringBootRunner {
 
+
+    final String baseDir = "D:/tmp";
+
     /**
      * 标识应用的类型
      */
@@ -23,9 +29,16 @@ public class SpringBootRunner {
      * @param arg 运行参数
      * @return ConfigurableApplicationContext
      */
-    public ConfigurableApplicationContext run(String... arg) {
+    public ConfigurableApplicationContext run(String... arg) throws LifecycleException, InterruptedException {
         ConfigurableApplicationContext context = null;
         context = createContext();
+        // 创建web 容器
+        Tomcat tomcat = new TomcatServletwebServer().getWebServer(baseDir);
+        tomcat.start();
+        tomcat.wait();
+
+        // 设置 root context 到tomcat 中
+        tomcat.getService();
         return context;
     }
 
