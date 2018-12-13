@@ -1,5 +1,8 @@
 package com.ctalix.wl.servlet.context;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
 /**
  * Todo
  *
@@ -7,9 +10,17 @@ package com.ctalix.wl.servlet.context;
  * @since
  */
 
-// @FunctionalInterface
-public class ServletContextInitializer {
+@FunctionalInterface
+public interface ServletContextInitializer {
 
 
+    /**
+     * Configure the given {@link ServletContext} with any servlets, filters, listeners
+     * context-params and attributes necessary for initialization.
+     * @param servletContext the {@code ServletContext} to initialize
+     * @throws ServletException if any call against the given {@code ServletContext}
+     * throws a {@code ServletException}
+     */
+    void onStartup(ServletContext servletContext) throws ServletException;
 
 }
