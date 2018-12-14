@@ -42,11 +42,33 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
         beanFactory.addBeanPostProcessor(new WebApplicationContextServletContextAwareProcessor(this));
     }
 
+    @Override
     public WebServer getWebServer() {
         return null;
     }
 
+    @Override
     public String getServerNamespace() {
         return null;
+    }
+
+
+    @Override
+    public void close() {
+        super.close();
+        stopAndReleaseWebServer();
+    }
+
+    private void stopAndReleaseWebServer() {
+        WebServer webServer = this.webServer;
+        if (webServer != null) {
+            try {
+                webServer.stop();
+                this.webServer = null;
+            }
+            catch (Exception ex) {
+                throw new IllegalStateException(ex);
+            }
+        }
     }
 }
